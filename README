@@ -1,0 +1,15 @@
+Create volume
+1. docker volume create test_volume
+
+Build write app
+1. cd write
+2. docker build -t write-volume .
+3. docker run --mount source=test_volume,destination=/app write-volume
+4. stop and remove write-volume container
+
+Build read app
+1. cd ../read
+2. docker build -t read-volume .
+3. docker run --mount source=test_volume,destination=/app read-volume
+
+After running the read-volume app, the message stored by write-volume should appear
